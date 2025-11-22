@@ -1,19 +1,35 @@
-# DevOps Portfolio Design Guidelines
+# DevOps Portfolio Design Guidelines - Enhanced Edition
 
 ## Design Approach
-**Reference-Based**: Drawing inspiration from Linear's clean typography, GitHub's developer-friendly aesthetic, and Vercel's modern tech presentation. This creates a professional, tech-forward portfolio that resonates with DevOps/SRE audiences while maintaining originality.
+**Concept**: "DevOps Control Center" - A cinematic, futuristic portfolio that visualizes infrastructure as an interactive command console. Drawing inspiration from modern monitoring dashboards, cyberpunk aesthetics, and premium tech brands (Vercel, Linear, GitHub).
 
 **Core Principles:**
-- Technical sophistication without complexity
-- Content-first hierarchy
-- Subtle, purposeful animations
-- Professional polish with personality
+- Glassmorphism and depth layering for premium feel
+- Dynamic gradients and kinetic lighting effects
+- Interactive storytelling with KPI metrics and live indicators
+- Chromatic accent palette for high visual impact
+- DevOps narrative through visual metaphors (pipelines, deployments, monitoring)
+
+## Color System
+
+**Base Palette:**
+- Background: Deep navy (#0A0E27, #0F1419)
+- Primary Accent: Cyan/Teal (#00D9FF, #14F195)
+- Secondary Accent: Electric Magenta (#FF0080, #BD00FF)
+- Success/Status: Neon Green (#10B981)
+- Glass overlays: rgba(255, 255, 255, 0.05-0.1) with backdrop-blur
+
+**Gradient Patterns:**
+- Aurora: Cyan → Purple → Magenta sweeping gradients
+- Mesh: Multi-point radial gradients for depth
+- Glow effects: Soft shadows with accent colors at 20-40% opacity
 
 ## Typography System
 
 **Font Stack:**
-- Primary: Inter or 'Space Grotesk' (modern, technical feel)
-- Monospace: 'JetBrains Mono' or 'Fira Code' (for technical tags/badges)
+- Headings: 'Space Grotesk' (expanded tracking, bold weights)
+- Body: 'Inter' (modern, readable)
+- Monospace: 'JetBrains Mono' (technical elements, code, metrics)
 
 **Type Scale:**
 - Hero Name: text-5xl md:text-7xl, font-bold

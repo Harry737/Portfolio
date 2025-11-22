@@ -35,7 +35,7 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-background/80 backdrop-blur-md border-b border-border"
+          ? "bg-background/70 backdrop-blur-xl border-b border-primary/20 shadow-lg shadow-primary/5"
           : "bg-transparent"
       }`}
     >
@@ -43,10 +43,15 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           <button
             onClick={() => scrollToSection("#hero")}
-            className="text-xl font-bold font-mono hover-elevate active-elevate-2 px-3 py-1 rounded-md transition-colors"
+            className="relative group"
             data-testid="link-home"
           >
-            <span className="text-primary">HR</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-lg blur-lg opacity-0 group-hover:opacity-50 transition-opacity" />
+            <div className="relative text-xl font-bold font-mono px-3 py-1.5 rounded-lg border border-primary/30 bg-primary/5">
+              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                HR
+              </span>
+            </div>
           </button>
 
           <div className="hidden md:flex items-center gap-1">
@@ -54,11 +59,11 @@ export default function Navbar() {
               <button
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
-                className="px-3 py-2 text-sm font-medium text-foreground/80 hover:text-foreground transition-colors relative group"
+                className="px-4 py-2 text-sm font-medium text-foreground/80 hover:text-foreground transition-colors relative group"
                 data-testid={`link-${item.name.toLowerCase()}`}
               >
                 {item.name}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-accent transition-all duration-300 group-hover:w-full" />
               </button>
             ))}
           </div>
@@ -83,13 +88,13 @@ export default function Navbar() {
       </div>
 
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-background border-b border-border">
+        <div className="md:hidden bg-background/95 backdrop-blur-xl border-b border-primary/20">
           <div className="px-4 py-4 space-y-2">
             {navItems.map((item) => (
               <button
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
-                className="block w-full text-left px-3 py-2 text-base font-medium text-foreground/80 hover:text-foreground hover-elevate active-elevate-2 rounded-md transition-colors"
+                className="block w-full text-left px-4 py-3 text-base font-medium text-foreground/80 hover:text-foreground hover-elevate active-elevate-2 rounded-lg transition-all border border-transparent hover:border-primary/20"
                 data-testid={`link-mobile-${item.name.toLowerCase()}`}
               >
                 {item.name}
