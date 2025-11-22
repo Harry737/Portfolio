@@ -10,12 +10,12 @@ const contactInfo = [
     value: "harish77ravi@gmail.com",
     href: "mailto:harish77ravi@gmail.com",
   },
-  {
-    icon: Phone,
-    label: "Phone",
-    value: "+91 63555 59443",
-    href: "tel:+916355559443",
-  },
+  // {
+  //   icon: Phone,
+  //   label: "Phone",
+  //   value: "+91 63555 59443",
+  //   href: "tel:+916355559443",
+  // },
   {
     icon: MapPin,
     label: "Location",
