@@ -152,8 +152,8 @@ export default function Skills() {
                             {group.services.map((service, serviceIndex) => (
                               <Badge
                                 key={service}
-                                variant="secondary"
-                                className="font-mono text-xs px-2.5 py-1 bg-background/60 border border-primary/10 hover:border-primary/30 hover:bg-primary/5 transition-all cursor-default"
+                                variant="outline"
+                                className="font-mono text-xs px-2.5 py-1 border-primary/20 text-foreground hover:border-primary/40 hover:bg-primary/5 transition-all cursor-default"
                                 data-testid={`badge-skill-${categoryIndex}-${groupIndex}-${serviceIndex}`}
                               >
                                 {service}
@@ -168,8 +168,8 @@ export default function Skills() {
                       {category.skills?.map((skill, skillIndex) => (
                         <Badge
                           key={skill}
-                          variant="secondary"
-                          className="font-mono text-xs px-2.5 py-1 bg-background/60 border border-primary/10 hover:border-primary/30 hover:bg-primary/5 transition-all cursor-default"
+                          variant="outline"
+                          className="font-mono text-xs px-2.5 py-1 border-primary/20 text-foreground hover:border-primary/40 hover:bg-primary/5 transition-all cursor-default"
                           data-testid={`badge-skill-${categoryIndex}-${skillIndex}`}
                         >
                           {skill}
