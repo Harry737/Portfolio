@@ -16,11 +16,11 @@ const skillCategories = [
     cloudGroups: [
       {
         platform: "AWS",
-        services: ["EC2", "EKS", "ECS", "S3", "VPC", "RDS", "Route 53", "ECR", "CloudWatch", "Lambda", "CloudFront", "EventBridge", "Cognito"],
+        services: ["EC2", "EKS", "ECS", "S3", "RDS", "Lambda", "CloudWatch", "Route 53"],
       },
       {
         platform: "Azure",
-        services: ["App Services", "AD", "Functions", "Blob Storage", "VM", "Key Vault"],
+        services: ["App Services", "Functions", "Key Vault", "Blob Storage"],
       },
     ],
   },
