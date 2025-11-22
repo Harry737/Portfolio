@@ -130,9 +130,17 @@ export default function Hero() {
                 variant="outline"
                 className="gap-2 border-primary/30 hover:border-primary/50 hover:bg-primary/5"
                 data-testid="button-download-resume"
+                asChild
               >
-                <Download className="h-4 w-4" />
-                Download Resume
+                <a 
+                  href="/resume.pdf" 
+                  download="Harish_R_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Download className="h-4 w-4" />
+                  Download Resume
+                </a>
               </Button>
             </div>
 
