@@ -12,28 +12,16 @@ const skillCategories = [
     category: "Cloud Platforms",
     icon: Cloud,
     color: "from-blue-500 to-purple-500",
-    skills: [
-      "AWS",
-      "EC2",
-      "EKS",
-      "ECS",
-      "S3",
-      "VPC",
-      "RDS",
-      "Route 53",
-      "ECR",
-      "CloudWatch",
-      "Lambda",
-      "CloudFront",
-      "EventBridge",
-      "Cognito",
-      "Azure",
-      "App Services",
-      "Azure AD",
-      "Functions",
-      "Blob Storage",
-      "VM",
-      "Key Vault",
+    isCloud: true,
+    cloudGroups: [
+      {
+        platform: "AWS",
+        services: ["EC2", "EKS", "ECS", "S3", "VPC", "RDS", "Route 53", "ECR", "CloudWatch", "Lambda", "CloudFront", "EventBridge", "Cognito"],
+      },
+      {
+        platform: "Azure",
+        services: ["App Services", "AD", "Functions", "Blob Storage", "VM", "Key Vault"],
+      },
     ],
   },
   {
@@ -151,18 +139,42 @@ export default function Skills() {
                     <h3 className="text-lg font-semibold">{category.category}</h3>
                   </div>
                   
-                  <div className="flex flex-wrap gap-2">
-                    {category.skills.map((skill, skillIndex) => (
-                      <Badge
-                        key={skill}
-                        variant="secondary"
-                        className="font-mono text-xs px-2.5 py-1 bg-background/60 border border-primary/10 hover:border-primary/30 hover:bg-primary/5 transition-all cursor-default"
-                        data-testid={`badge-skill-${categoryIndex}-${skillIndex}`}
-                      >
-                        {skill}
-                      </Badge>
-                    ))}
-                  </div>
+                  {category.isCloud && category.cloudGroups ? (
+                    <div className="space-y-4">
+                      {category.cloudGroups.map((group, groupIndex) => (
+                        <div key={group.platform}>
+                          <div className="text-sm font-semibold text-primary mb-2">
+                            {group.platform}
+                          </div>
+                          <div className="flex flex-wrap gap-2">
+                            {group.services.map((service, serviceIndex) => (
+                              <Badge
+                                key={service}
+                                variant="secondary"
+                                className="font-mono text-xs px-2.5 py-1 bg-background/60 border border-primary/10 hover:border-primary/30 hover:bg-primary/5 transition-all cursor-default"
+                                data-testid={`badge-skill-${categoryIndex}-${groupIndex}-${serviceIndex}`}
+                              >
+                                {service}
+                              </Badge>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="flex flex-wrap gap-2">
+                      {category.skills?.map((skill, skillIndex) => (
+                        <Badge
+                          key={skill}
+                          variant="secondary"
+                          className="font-mono text-xs px-2.5 py-1 bg-background/60 border border-primary/10 hover:border-primary/30 hover:bg-primary/5 transition-all cursor-default"
+                          data-testid={`badge-skill-${categoryIndex}-${skillIndex}`}
+                        >
+                          {skill}
+                        </Badge>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             );
