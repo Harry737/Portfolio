@@ -99,8 +99,8 @@ export default function Hero() {
               {techStack.map((tech, index) => (
                 <Badge
                   key={tech}
-                  variant="secondary"
-                  className="font-mono text-xs sm:text-sm px-3 py-1.5 bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary/50 hover:bg-card/70 transition-all duration-300"
+                  variant="outline"
+                  className="font-mono text-xs sm:text-sm px-3 py-1.5 border-primary/30 text-foreground hover:border-primary/50 hover:bg-primary/5 transition-all duration-300"
                   data-testid={`badge-tech-${index}`}
                 >
                   {tech}
