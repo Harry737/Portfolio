@@ -16,11 +16,11 @@ const skillCategories = [
     cloudGroups: [
       {
         platform: "AWS",
-        services: ["EC2", "EKS", "ECS", "S3", "RDS", "Lambda", "CloudWatch", "Route 53"],
+        services: ["EC2", "EKS", "ECS", "S3", "VPC", "RDS", "Route 53", "ECR", "CloudWatch", "Lambda", "CloudFront", "EventBridge", "Cognito"],
       },
       {
         platform: "Azure",
-        services: ["App Services", "Functions", "Key Vault", "Blob Storage"],
+        services: ["App Services", "AD", "Functions", "Blob Storage", "VM", "Key Vault"],
       },
     ],
   },
@@ -126,7 +126,9 @@ export default function Skills() {
             return (
               <div
                 key={category.category}
-                className="group relative p-6 rounded-xl bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary/40 transition-all duration-500 hover:-translate-y-1"
+                className={`group relative p-6 rounded-xl bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary/40 transition-all duration-500 hover:-translate-y-1 ${
+                  category.isCloud ? "lg:col-span-2" : ""
+                }`}
                 data-testid={`skill-category-${categoryIndex}`}
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -140,7 +142,7 @@ export default function Skills() {
                   </div>
                   
                   {category.isCloud && category.cloudGroups ? (
-                    <div className="space-y-4">
+                    <div className="grid md:grid-cols-2 gap-4">
                       {category.cloudGroups.map((group, groupIndex) => (
                         <div key={group.platform}>
                           <div className="text-sm font-semibold text-primary mb-2">
