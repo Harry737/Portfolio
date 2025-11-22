@@ -1,0 +1,139 @@
+Build a complete, modern, responsive DevOps portfolio website using HTML, CSS, and JavaScript (or React if needed). The site must be static and fully compatible with GitHub Pages (no backend). Include animations, clean UI, dark/light mode toggle, mobile responsiveness, and a professional tech-portfolio theme. Use Tailwind CSS or custom CSS for styling.
+
+Use the following content for the website:
+
+Hero Section
+
+Name: Harish R
+Role: DevOps Engineer / Site Reliability Engineer (SRE)
+Tagline: Kubernetes • Terraform • AWS • Azure • CI/CD • DevSecOps • Cloud Infrastructure • Automation
+Include a smooth fade-in animation and a call-to-action: “View My Projects” and “Download Resume”.
+
+About Section
+
+Use this text (formatted cleanly):
+
+"Versatile and performance-driven DevOps Engineer / SRE with 3+ years of hands-on experience building resilient CI/CD pipelines, automating infrastructure, and deploying highly available microservices across AWS and Azure. Specialized in Kubernetes, Terraform, GitOps, observability, and cloud automation. Reduced deployment time by 40% and optimized cost by 60% through infrastructure redesign. Passionate about reliability engineering and scalable DevOps practices."
+
+Skills Section
+
+Display skills as clean badges or cards grouped under categories:
+
+Languages: Python, Shell, Node.js, C#, .NET
+Cloud: AWS (EC2, EKS, ECS, S3, VPC, RDS, Route 53, ECR, CloudWatch, Lambda, CloudFront, EventBridge, Cognito), Azure (App Services, AD, Functions, Blob Storage, VM, Key Vault)
+DevOps Tools: Docker, Kubernetes, Helm, Terraform, Ansible, Argo CD, Jenkins, GitHub Actions, Azure Pipelines
+Observability: Prometheus, Grafana, CloudWatch, Alertmanager, EFK
+Security: SonarQube, Trivy, Amazon Inspector, Secrets Manager, Key Vault
+Other: Git, GitHub, Bitbucket, JIRA, Maven, Gradle
+Databases: PostgreSQL, MySQL, MSSQL, Redis, CosmosDB
+
+Represent this in a responsive grid.
+
+Projects Section
+
+Show each project in a card format with hover animation:
+
+1. Wealth Management Platform
+
+Kubernetes microservices with GitOps (Argo CD)
+
+Route 53, ALB ingress, HPA, ACM SSL
+
+Prometheus + Alertmanager + CloudWatch monitoring
+
+Slack alerting integration
+
+2. Fleet Intelligence & Management
+
+Azure App Services with SSO via Azure AD
+
+Azure Functions automation
+
+Key Vault secrets
+
+Cost reduction via compute migration
+
+3. AI/Analytics Automation
+
+Multi-tenant chatbot: Angular + FastAPI + Node.js + .NET migrated to EKS
+
+Python ETL redesigned for chunk processing of 5GB CSV
+
+EventBridge → ECS automated ingestion pipeline
+
+Reduced infra cost by 60%
+
+4. Internal DevOps Tools
+
+Slack/Skype CI/CD alerting
+
+Mobile environment setup scripts
+
+Offline AI chatbot (Ollama + OpenWeb UI)
+
+Use project cards with icons, tags, and optional GitHub buttons.
+
+Experience Section
+
+Create vertical timeline with animations. Use:
+
+DevOps Engineer / SRE — DSRC (Feb 2022 – Present)
+
+Automated IaC using Terraform
+
+Managed EKS with Argo CD + Helm
+
+Built serverless workflows (Lambda)
+
+CI/CD pipelines for .NET, Node.js, mobile apps
+
+Full observability stack (CloudWatch, Prometheus, Grafana, EFK)
+
+Route 53, ALB, SSL/TLS, ACM
+
+Internal automation tools, AI chatbots
+
+DevSecOps Section
+
+Add a dedicated subsection with icons:
+Pentesting (Burp Suite, Kali), Amazon Inspector, PowerShell hardening, SonarQube, Trivy, ECR scanning, DDoS testing.
+
+Achievements Section
+
+Include badges/cards:
+
+Recognized for fixing production issues across full stack
+
+Appreciation for organizational AI initiatives (Ollama + OpenWeb + Agentic bots)
+
+Education Section
+
+B.E. Computer Science Engineering, CSI College of Engineering (2018–2022)
+
+Contact Section
+
+Include contact form + links:
+Email: harish77ravi@gmail.com
+
+Phone: +91 63555 59443
+LinkedIn: linkedin.com/in/harish-devops
+GitHub: github.com/Harry737
+Location: Ooty, India
+
+Final Requirements
+
+Make the design premium-quality
+
+Add smooth scroll animations
+
+Use a sticky navbar
+
+Dark/light toggle
+
+Project grid hover effects
+
+Fully mobile responsive
+
+All code must be static and deployable on GitHub Pages
+
+Output the full code structure: index.html, style.css, script.js (or React components)
