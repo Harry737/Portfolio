@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, GitBranch, Layers, Activity } from "lucide-react";
+import { GitBranch, Layers, Activity } from "lucide-react";
 
 const projects = [
   {
@@ -82,7 +82,6 @@ export default function Projects() {
                     <div className="p-3 rounded-lg bg-primary/10 border border-primary/20 group-hover:border-primary/40 transition-colors">
                       <IconComponent className="h-6 w-6 text-primary" />
                     </div>
-                    <ExternalLink className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors opacity-0 group-hover:opacity-100" />
                   </div>
 
                   <h3 className="text-2xl font-semibold mb-3 group-hover:text-primary transition-colors">

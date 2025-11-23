@@ -133,9 +133,12 @@ export default function Contact() {
             size="lg"
             className="gap-2 group bg-gradient-to-r from-primary to-accent hover:opacity-90 shadow-lg shadow-primary/25"
             data-testid="button-send-message"
+            asChild
           >
-            <Send className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            Send a Message
+            <a href="https://teams.microsoft.com/l/chat/0/0?users=harish77ravi@gmail.com" target="_blank" rel="noopener noreferrer">
+              <Send className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              Send a Message
+            </a>
           </Button>
         </div>
       </div>
