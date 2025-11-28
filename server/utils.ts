@@ -37,6 +37,39 @@ async function getLocationFromIp(ip: string): Promise<string | null> {
   }
 
   try {
+    const response = await fetch(`https://geojs.io/api/geoip/${ip}`, {
+      signal: AbortSignal.timeout(5000),
+    });
+    if (response.ok) {
+      const data: any = await response.json();
+      if (data.city && data.country_name) {
+        return `${data.city}, ${data.country_name}`;
+      } else if (data.country_name) {
+        return data.country_name;
+      }
+    }
+  } catch (error) {
+    console.error("Error fetching location from geojs:", error);
+  }
+
+  try {
+    const response = await fetch(`https://ipapi.co/${ip}/json/`, {
+      signal: AbortSignal.timeout(5000),
+      headers: { Accept: "application/json" },
+    });
+    if (response.ok) {
+      const data: any = await response.json();
+      if (data.city && data.country_name) {
+        return `${data.city}, ${data.country_name}`;
+      } else if (data.country_name) {
+        return data.country_name;
+      }
+    }
+  } catch (error) {
+    console.error("Error fetching location from ipapi.co:", error);
+  }
+
+  try {
     const response = await fetch(`https://ipwho.is/?ip=${ip}`, {
       signal: AbortSignal.timeout(5000),
     });
