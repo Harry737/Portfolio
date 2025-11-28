@@ -41,8 +41,11 @@ export class MemStorage implements IStorage {
   async addVisitor(visitor: InsertVisitor): Promise<Visitor> {
     const id = randomUUID();
     const newVisitor: Visitor = { 
-      ...visitor, 
       id,
+      ip: visitor.ip,
+      page: visitor.page,
+      referrer: visitor.referrer || null,
+      userAgent: visitor.userAgent || null,
       timestamp: new Date()
     };
     this.visitors.push(newVisitor);

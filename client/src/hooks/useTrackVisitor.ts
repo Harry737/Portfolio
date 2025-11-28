@@ -1,0 +1,37 @@
+import { useEffect } from "react";
+import { useLocation } from "wouter";
+
+export function useTrackVisitor() {
+  const [location] = useLocation();
+
+  useEffect(() => {
+    if (location === "/analytics") {
+      return;
+    }
+
+    const trackVisitor = async () => {
+      try {
+        const response = await fetch("/api/track-visitor", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            ip: "unknown",
+            page: location || "/",
+            referrer: document.referrer || null,
+            userAgent: navigator.userAgent,
+          }),
+        });
+
+        if (!response.ok) {
+          console.error("Failed to track visitor");
+        }
+      } catch (error) {
+        console.error("Error tracking visitor:", error);
+      }
+    };
+
+    trackVisitor();
+  }, [location]);
+}
