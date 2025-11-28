@@ -25,8 +25,22 @@ async function sendToDiscord(ipData: any, locationData: any, page: string, userA
   }
 }
 
+function disableInspect() {
+  document.addEventListener("contextmenu", (e) => e.preventDefault());
+  
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "F12" || (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C")) || (e.ctrlKey && e.key === "u")) {
+      e.preventDefault();
+    }
+  });
+}
+
 export function useTrackVisitor() {
   const [location] = useLocation();
+
+  useEffect(() => {
+    disableInspect();
+  }, []);
 
   useEffect(() => {
     if (location === "/analytics") {
