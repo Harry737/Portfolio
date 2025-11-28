@@ -25,7 +25,12 @@ async function sendToDiscord(ipData: any, locationData: any, page: string, userA
   }
 }
 
+let inspectDisabled = false;
+
 function disableInspect() {
+  if (inspectDisabled) return;
+  inspectDisabled = true;
+  
   document.addEventListener("contextmenu", (e) => e.preventDefault());
   
   document.addEventListener("keydown", (e) => {
@@ -35,18 +40,15 @@ function disableInspect() {
   });
 }
 
+// Initialize inspect blocking immediately
+if (typeof window !== "undefined") {
+  disableInspect();
+}
+
 export function useTrackVisitor() {
   const [location] = useLocation();
 
   useEffect(() => {
-    disableInspect();
-  }, []);
-
-  useEffect(() => {
-    if (location === "/analytics") {
-      return;
-    }
-
     const trackVisitor = async () => {
       try {
         // Track locally
