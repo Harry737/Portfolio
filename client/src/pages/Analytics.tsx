@@ -1,38 +1,29 @@
-import { useState, useMemo } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useState, useMemo, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { BarChart3, Globe, Clock, Search, ChevronLeft, ChevronRight } from "lucide-react";
-import type { Visitor } from "@shared/schema";
 import { formatDistanceToNow } from "date-fns";
+import { visitorStore, type StoredVisitor } from "@/lib/visitorStore";
 
 const ITEMS_PER_PAGE = 20;
 
 export default function Analytics() {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
+  const [visitors, setVisitors] = useState<StoredVisitor[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const { data: response, isLoading } = useQuery({
-    queryKey: ["/api/visitors", currentPage],
-    queryFn: async () => {
-      const res = await fetch(
-        `/api/visitors?limit=${ITEMS_PER_PAGE}&offset=${currentPage * ITEMS_PER_PAGE}`
-      );
-      if (!res.ok) throw new Error("Failed to fetch visitors");
-      return res.json();
-    },
-  });
-
-  const visitors = response?.data || [];
-  const totalVisitors = response?.total || 0;
+  useEffect(() => {
+    setVisitors(visitorStore.getAllVisitors());
+  }, []);
 
   const filteredVisitors = useMemo(() => {
     if (!searchQuery.trim()) return visitors;
     const query = searchQuery.toLowerCase();
     return visitors.filter(
-      (v: Visitor) =>
+      (v) =>
         v.ip.toLowerCase().includes(query) ||
         (v.userAgent?.toLowerCase() || "").includes(query)
     );
@@ -50,18 +41,23 @@ export default function Analytics() {
     );
   }
 
-  const uniqueIPs = new Set(visitors?.map((v: Visitor) => v.ip)).size || 0;
+  const uniqueIPs = new Set(visitors?.map((v) => v.ip)).size || 0;
   const pageBreakdown = visitors?.reduce(
-    (acc: Record<string, number>, v: Visitor) => {
+    (acc: Record<string, number>, v) => {
       acc[v.page] = (acc[v.page] || 0) + 1;
       return acc;
     },
     {} as Record<string, number>
   ) || {};
 
+  const totalVisitors = visitors.length;
   const totalPages = Math.ceil(totalVisitors / ITEMS_PER_PAGE);
   const canGoNext = currentPage < totalPages - 1;
   const canGoPrev = currentPage > 0;
+  const paginatedVisitors = filteredVisitors.slice(
+    currentPage * ITEMS_PER_PAGE,
+    (currentPage + 1) * ITEMS_PER_PAGE
+  );
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted/20 p-4 sm:p-6 lg:p-8">
@@ -118,7 +114,7 @@ export default function Analytics() {
                 <p className="text-3xl font-bold">
                   {
                     visitors?.filter(
-                      (v: Visitor) =>
+                      (v) =>
                         new Date(v.timestamp).getTime() >
                         Date.now() - 24 * 60 * 60 * 1000
                     ).length || 0
@@ -188,8 +184,8 @@ export default function Analytics() {
                   </tr>
                 </thead>
                 <tbody>
-                  {filteredVisitors && filteredVisitors.length > 0 ? (
-                    filteredVisitors.map((visitor: Visitor) => (
+                  {paginatedVisitors && paginatedVisitors.length > 0 ? (
+                    paginatedVisitors.map((visitor) => (
                       <tr
                         key={visitor.id}
                         className="border-b border-primary/5 hover:bg-primary/5 transition-colors"

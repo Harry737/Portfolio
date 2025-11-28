@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "wouter";
+import { visitorStore } from "@/lib/visitorStore";
 
 export function useTrackVisitor() {
   const [location] = useLocation();
@@ -9,24 +10,10 @@ export function useTrackVisitor() {
       return;
     }
 
-    const trackVisitor = async () => {
-      try {
-        await fetch("/api/visitors", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            page: location || "/",
-            referrer: document.referrer || null,
-            userAgent: navigator.userAgent,
-          }),
-        });
-      } catch (error) {
-        console.error("Error tracking visitor:", error);
-      }
-    };
-
-    trackVisitor();
+    visitorStore.addVisitor(
+      location || "/",
+      document.referrer || null,
+      navigator.userAgent
+    );
   }, [location]);
 }
