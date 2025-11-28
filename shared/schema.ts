@@ -13,6 +13,8 @@ export const visitors = pgTable("visitors", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   ip: text("ip").notNull(),
   location: text("location"),
+  latitude: text("latitude"),
+  longitude: text("longitude"),
   page: text("page").notNull(),
   referrer: text("referrer"),
   userAgent: text("user_agent"),

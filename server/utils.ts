@@ -1,3 +1,30 @@
+async function reverseGeocode(latitude: number, longitude: number): Promise<string | null> {
+  try {
+    const response = await fetch(
+      `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`,
+      {
+        signal: AbortSignal.timeout(5000),
+        headers: { "User-Agent": "Portfolio Tracker" },
+      }
+    );
+    if (response.ok) {
+      const data: any = await response.json();
+      const address = data.address || {};
+      const city = address.city || address.town || address.village;
+      const country = address.country;
+      
+      if (city && country) {
+        return `${city}, ${country}`;
+      } else if (country) {
+        return country;
+      }
+    }
+  } catch (error) {
+    console.error("Error reverse geocoding:", error);
+  }
+  return null;
+}
+
 export function parseUserAgent(userAgent: string): { browser: string; os: string } {
   let browser = "Unknown";
   let os = "Unknown";
@@ -106,4 +133,4 @@ async function getLocationFromIp(ip: string): Promise<string | null> {
   return null;
 }
 
-export { getLocationFromIp };
+export { getLocationFromIp, reverseGeocode };
