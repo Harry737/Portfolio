@@ -34,7 +34,6 @@ export default function Analytics() {
     return visitors.filter(
       (v: Visitor) =>
         v.ip.toLowerCase().includes(query) ||
-        (v.location?.toLowerCase() || "").includes(query) ||
         (v.userAgent?.toLowerCase() || "").includes(query)
     );
   }, [visitors, searchQuery]);
@@ -158,7 +157,7 @@ export default function Analytics() {
               <div className="relative flex-1 md:max-w-xs">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
-                  placeholder="Search IP, location, or browser..."
+                  placeholder="Search IP or browser..."
                   value={searchQuery}
                   onChange={(e) => {
                     setSearchQuery(e.target.value);
@@ -176,9 +175,6 @@ export default function Analytics() {
                   <tr className="border-b border-primary/10">
                     <th className="text-left py-3 px-4 text-muted-foreground font-semibold">
                       IP Address
-                    </th>
-                    <th className="text-left py-3 px-4 text-muted-foreground font-semibold">
-                      Location
                     </th>
                     <th className="text-left py-3 px-4 text-muted-foreground font-semibold">
                       Page
@@ -202,9 +198,6 @@ export default function Analytics() {
                         <td className="py-3 px-4 font-mono text-xs">
                           {visitor.ip}
                         </td>
-                        <td className="py-3 px-4 text-sm">
-                          {visitor.location || "—"}
-                        </td>
                         <td className="py-3 px-4">
                           {visitor.page || "home"}
                         </td>
@@ -222,7 +215,7 @@ export default function Analytics() {
                     ))
                   ) : (
                     <tr>
-                      <td colSpan={5} className="py-6 text-center text-muted-foreground">
+                      <td colSpan={4} className="py-6 text-center text-muted-foreground">
                         {searchQuery ? "No results found" : "No visitors yet"}
                       </td>
                     </tr>

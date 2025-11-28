@@ -2,7 +2,6 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertVisitorSchema } from "@shared/schema";
-import { getLocationFromIp, parseUserAgent, reverseGeocode } from "./utils";
 
 function getClientIp(req: any): string {
   return (
@@ -14,33 +13,16 @@ function getClientIp(req: any): string {
 }
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  app.post("/api/track-visitor", async (req, res) => {
+  app.post("/api/visitors", async (req, res) => {
     try {
       const ip = getClientIp(req);
-      const userAgent = req.body.userAgent || "";
-      const { browser, os } = parseUserAgent(userAgent);
-      
-      let location = null;
-      const latitude = req.body.latitude;
-      const longitude = req.body.longitude;
-      
-      // Try to get location from GPS coordinates first
-      if (latitude && longitude) {
-        location = await reverseGeocode(parseFloat(latitude), parseFloat(longitude));
-      }
-      
-      // Fallback to IP-based geolocation
-      if (!location) {
-        location = await getLocationFromIp(ip);
-      }
       
       const validatedData = insertVisitorSchema.parse({
         ...req.body,
         ip,
-        location,
       });
       const visitor = await storage.addVisitor(validatedData);
-      res.json({ ...visitor, browser, os });
+      res.json(visitor);
     } catch (error) {
       res.status(400).json({ error: "Invalid visitor data" });
     }

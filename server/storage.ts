@@ -43,7 +43,6 @@ export class MemStorage implements IStorage {
     const newVisitor: Visitor = { 
       id,
       ip: visitor.ip,
-      location: visitor.location || null,
       page: visitor.page,
       referrer: visitor.referrer || null,
       userAgent: visitor.userAgent || null,
