@@ -119,7 +119,7 @@ export default function Analytics() {
                 <p className="text-3xl font-bold">
                   {
                     visitors?.filter(
-                      (v) =>
+                      (v: Visitor) =>
                         new Date(v.timestamp).getTime() >
                         Date.now() - 24 * 60 * 60 * 1000
                     ).length || 0
