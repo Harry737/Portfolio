@@ -32,7 +32,7 @@ export default function Analytics() {
     if (!searchQuery.trim()) return visitors;
     const query = searchQuery.toLowerCase();
     return visitors.filter(
-      (v) =>
+      (v: Visitor) =>
         v.ip.toLowerCase().includes(query) ||
         (v.location?.toLowerCase() || "").includes(query) ||
         (v.userAgent?.toLowerCase() || "").includes(query)
@@ -51,9 +51,9 @@ export default function Analytics() {
     );
   }
 
-  const uniqueIPs = new Set(visitors?.map((v) => v.ip)).size || 0;
+  const uniqueIPs = new Set(visitors?.map((v: Visitor) => v.ip)).size || 0;
   const pageBreakdown = visitors?.reduce(
-    (acc, v) => {
+    (acc: Record<string, number>, v: Visitor) => {
       acc[v.page] = (acc[v.page] || 0) + 1;
       return acc;
     },
