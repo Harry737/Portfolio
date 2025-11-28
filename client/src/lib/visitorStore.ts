@@ -13,7 +13,7 @@ class VisitorStore {
   addVisitor(page: string, referrer: string | null, userAgent: string | null): StoredVisitor {
     const visitor: StoredVisitor = {
       id: Math.random().toString(36).substring(2, 11),
-      ip: "local-browser",
+      ip: "sent-to-discord",
       page,
       referrer,
       userAgent,
