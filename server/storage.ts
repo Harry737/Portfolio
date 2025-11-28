@@ -9,7 +9,7 @@ export interface IStorage {
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
   addVisitor(visitor: InsertVisitor): Promise<Visitor>;
-  getVisitors(limit?: number): Promise<Visitor[]>;
+  getVisitors(limit?: number, offset?: number): Promise<{data: Visitor[], total: number}>;
 }
 
 export class MemStorage implements IStorage {
@@ -43,6 +43,7 @@ export class MemStorage implements IStorage {
     const newVisitor: Visitor = { 
       id,
       ip: visitor.ip,
+      location: visitor.location || null,
       page: visitor.page,
       referrer: visitor.referrer || null,
       userAgent: visitor.userAgent || null,
@@ -52,8 +53,11 @@ export class MemStorage implements IStorage {
     return newVisitor;
   }
 
-  async getVisitors(limit: number = 100): Promise<Visitor[]> {
-    return this.visitors.slice(-limit).reverse();
+  async getVisitors(limit: number = 20, offset: number = 0): Promise<{data: Visitor[], total: number}> {
+    const sorted = [...this.visitors].reverse();
+    const total = sorted.length;
+    const data = sorted.slice(offset, offset + limit);
+    return { data, total };
   }
 }
 

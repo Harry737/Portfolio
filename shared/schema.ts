@@ -12,6 +12,7 @@ export const users = pgTable("users", {
 export const visitors = pgTable("visitors", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   ip: text("ip").notNull(),
+  location: text("location"),
   page: text("page").notNull(),
   referrer: text("referrer"),
   userAgent: text("user_agent"),
